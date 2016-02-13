@@ -1,0 +1,37 @@
+Like arrays, Linked list is a linear data structure. Unlike arrays, linked list elements are not stored at contiguous location; the elements are linked using pointers.
+
+Why linked list?
+array's limitations:
+1) the size of the arrays is fixed: so we must know the upper limit on the number of elements in advance. Also, generally, the allocated memory is equal to the upper limit irrespective of the usage.
+2)Inserting a new element in an array of elements is expensive, because room has to be created for the new elements and to create room existing elements have to shifted.
+
+advantages over arrays:
+1)dynamic size
+2)ease of insertion/deletion
+
+drawbacks:
+1)random access is not allowed. we have to access elements sequentially starting from the first node. 
+2)extra memory space for a pointer is required with each element of the list
+
+c:
+struct node
+{
+	int data;
+	struct node *next;
+}
+
+java:
+class LinkedList
+{
+	Node head; //head of list
+
+	class Node
+	{
+	  int data;
+	  Node next;
+
+	  //constructor to create a new node
+	  //next is by default initialized as null
+	  Node(int d){data=d;}
+	}
+}
