@@ -1,0 +1,20 @@
+// A simple C program for traversal of a linked list
+#include<stdio.h>
+#include<stdlib.h>
+ 
+struct node 
+{
+  int data;
+  struct node *next;
+};
+ 
+// This function prints contents of linked list starting from 
+// the given node
+void printList(struct node *n)
+{
+  while (n != NULL)
+  {
+     printf(" %d ", n->data);
+     n = n->next;
+  }
+}
