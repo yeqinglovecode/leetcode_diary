@@ -1,0 +1,75 @@
+一、交换两个整数的值而不必用第三个参数
+a = 9;
+b = 11;
+
+a=a^b; 1001^1011=0010
+b=b^a; 1011^0010=1001
+a=a^b;  0010^1001=1011
+
+a = 11;
+b = 9;
+
+二、奇偶判断
+
+^a操作就是将a中的每一位按位逐一进行异或，
+例如a=4'b1010，则b=1^0^1^0=0，由此可以判断a中为1的位数是奇数还是偶数，是一个便捷的操作。
+//没明白
+
+
+
+题意：给定两个数 a和b，求它们的和。 要求不使用 +和-运算符
+
+思路：
+
+首先要知道，异或也被称为“模2和” ，so 这题就是运用异或的位运算啦。
+
+我们可以每次取最低位来计算, 然后每次右移一位，注意点有：
+
+进位为两个数字1
+负数的情况下，右移最高位补的是1 ,因此值得注意要取到什么时候为止。 
+java有一个无符号右移>>>高位补0，因此结束条件可以为a!=0 || b!=0
+
+c++:
+
+
+class Solution {
+public:
+	int getSum(int a, int b) {
+		int ans = 0, carry = 0;
+		for (int i = 0; i < 32; a >>= 1, b >>= 1, i++) {  //一共32位
+			int lower_a = a & 1, lower_b = b & 1;
+			ans |= (lower_a ^ lower_b ^ carry) << i;
+			carry = (carry & lower_a) | (carry & lower_b) | (lower_a & lower_b);
+		}
+		return ans;
+	}
+};
+
+第二种方法是直接进行异或操作。
+
+a ^ b 直接算出a + b 每位上%2的结果， 进位的话可以直接 (a & b)<<1得到（只有两个位均为1才会进位嘛，左移表示进到下一位啊）
+
+C++
+class Solution {
+public:
+	int getSum(int a, int b) {
+		while (b != 0) {
+			int c = a & b; //carry
+			a ^= b; //add 
+			b = c << 1;
+		}
+		return a;
+	}
+};
+
+one line solution:
+class Solution {
+public:
+	int getSum(int a, int b) {
+		return b == 0 ? a : getSum(a^b, (a&b) << 1);
+	}
+};
+
+感受：做完此题感觉bit manipulation的知识还没有学到家，
+首先，没有反应出此题考察的是模的加减法，
+其次，加减法则不熟悉，中间的code看不懂
