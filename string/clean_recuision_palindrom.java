@@ -1,7 +1,7 @@
 
 public class HelloWorld {
 	public static boolean isPalindrom(String s, int start, int end){
-		if((end-start)==1||(end-start)==2){
+		if(s==null|| (end-start)==1||end==start){
 			return true;
 		}
 		if(s.charAt(start)!=s.charAt(end)){
