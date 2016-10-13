@@ -6,6 +6,7 @@
 		
 		int[] L = new int[n1];
 		int[] R = new int[n2];
+		//m is included in L
 		for(i = 0; i<n1; i++){
 			L[i] = array[l+i];
 		}
